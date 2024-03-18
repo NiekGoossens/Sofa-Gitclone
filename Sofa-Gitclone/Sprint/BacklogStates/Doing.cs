@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
-    internal class Doing {
+    public class Doing : IBacklogItemState {
+        public void SetState(IBacklogItemState state) {
+            Console.WriteLine("test");
+        }
     }
 }
