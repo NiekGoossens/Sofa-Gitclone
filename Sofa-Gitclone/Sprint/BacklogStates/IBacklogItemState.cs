@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public interface IBacklogItemState {
 
-        // set next state
-
-
+        // stuur ook gebruiker mee om te controleren of de gebruiker de juiste rol heeft om de actie uit te voeren
         void nextStep(BacklogItem item);
         void previousStep(BacklogItem item);
-        // archive
-        // next step?
-        // previous step?
-        // 
-
+  
     }
 
 
