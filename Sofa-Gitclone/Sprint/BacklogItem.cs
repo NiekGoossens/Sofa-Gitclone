@@ -21,8 +21,12 @@ namespace Sofa_Gitclone.Sprint {
             State = new ToDo();
         }
 
-        public void SetState(IBacklogItemState state) { 
-            State.SetState(state);
+        public void nextStep() {
+            State.nextStep(this);
+        }
+
+        public void previousStep() {
+            State.previousStep(this);
         }
     }
 }

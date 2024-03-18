@@ -8,13 +8,15 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
     public interface IBacklogItemState {
 
         // set next state
-        void SetState(IBacklogItemState state);
 
-        // description
-        // leden
-        // name
-        // einddatum
-        // list van taken
+
+        void nextStep(BacklogItem item);
+        void previousStep(BacklogItem item);
+        // archive
+        // next step?
+        // previous step?
+        // 
+
     }
 
 

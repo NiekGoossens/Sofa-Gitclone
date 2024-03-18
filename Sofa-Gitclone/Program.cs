@@ -7,4 +7,6 @@ using System.Collections.Generic;
 BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, []);
 
 // set backlogitem state to doing
-backlogItem.SetState(new Doing());
+Console.WriteLine(backlogItem.State);
+backlogItem.nextStep();
+Console.WriteLine(backlogItem.State);

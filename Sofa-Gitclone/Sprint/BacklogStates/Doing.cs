@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Doing : IBacklogItemState {
-        public void SetState(IBacklogItemState state) {
-            Console.WriteLine("test");
+
+        public void nextStep(BacklogItem item) {
+            item.State = new ReadyForTesting();
+
+            // implement notification
+        }
+
+        public void previousStep(BacklogItem item) {
+            item.State = new ToDo();
         }
     }
 }
