@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    internal class Admin {
+    public class ProjectUser {
     }
 }

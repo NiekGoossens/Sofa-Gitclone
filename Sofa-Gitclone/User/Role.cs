@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    internal class Contributor {
+    public class Role {
+        public string Name { get; set; }
     }
 }
