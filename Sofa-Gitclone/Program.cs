@@ -35,3 +35,7 @@ Console.WriteLine(adminDecorator);
 Console.WriteLine(contributorDecorator);
 
 Console.WriteLine(adminDecorator2);
+
+Console.WriteLine(adminDecorator.canMarkAsDone());
+Console.WriteLine(adminDecorator.canDeploy());
+Console.WriteLine(contributorDecorator.canMarkAsDone());

@@ -15,14 +15,16 @@ namespace Sofa_Gitclone.User {
             this.project = project;
         }
 
-        //public String getRole() {
-        //    return role;
-        //}
+        public bool canTest() {
+            return false;
+        }
 
-        // method om rechten op te halen? zoals mag testen of mag deployen?
+        public bool canDeploy() {
+            return false;
+        }
 
-        // can test
-        // can deploy
-        // can mark as done
+        public bool canMarkAsDone() {
+            return false;
+        }
     }
 }
