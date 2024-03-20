@@ -34,8 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: NiekGoossens_Sofa-Gitclone
-          SONAR_ORGANIZATION: niekgoossens
         with:
             args: > 
                 -X
+            SONAR_PROJECT_KEY: NiekGoossens_Sofa-Gitclone
+            SONAR_ORGANIZATION: niekgoossens
