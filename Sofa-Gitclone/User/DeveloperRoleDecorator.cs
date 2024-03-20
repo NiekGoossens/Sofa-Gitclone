@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    internal class Admin {
+    public class DeveloperRoleDecorator : RoleDecorator {
+        public DeveloperRoleDecorator(User user, Project project) : base(user, project) {
+
+        }
     }
 }
