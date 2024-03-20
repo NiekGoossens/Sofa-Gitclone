@@ -25,13 +25,13 @@ var project2 = new Project("Project2");
 
 // project add user
 
-var adminDecorator = new AdminRoleDecorator(user1, project);
-var contributorDecorator = new ContributorRoleDecorator(user2, project);
+var adminDecorator = new ProductOwnerRoleDecorator(user1, project);
+var contributorDecorator = new DeveloperRoleDecorator(user2, project);
 
-var adminDecorator2 = new AdminRoleDecorator(user2, project2);
+var adminDecorator2 = new ProductOwnerRoleDecorator(user2, project2);
 
-Console.WriteLine(adminDecorator.getRole().Name);
+Console.WriteLine(adminDecorator);
 
-Console.WriteLine(contributorDecorator.getRole().Name);
+Console.WriteLine(contributorDecorator);
 
-Console.WriteLine(adminDecorator2.getRole().Name);
+Console.WriteLine(adminDecorator2);

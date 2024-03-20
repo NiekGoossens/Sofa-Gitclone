@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.User {
     public class RoleDecorator {
         protected User user;
-        protected Role role;
+
         protected Project project;
 
-        public RoleDecorator(User user, Role role, Project project) {
+        public RoleDecorator(User user, Project project) {
             this.user = user;
-            this.role = role;
             this.project = project;
         }
 
-        public Role getRole() {
-            return role;
-        }
+        //public String getRole() {
+        //    return role;
+        //}
 
         // method om rechten op te halen? zoals mag testen of mag deployen?
 
