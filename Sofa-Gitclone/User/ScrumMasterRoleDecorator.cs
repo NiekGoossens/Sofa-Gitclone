@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.User {
     public class ScrumMasterRoleDecorator : RoleDecorator {
         public ScrumMasterRoleDecorator(User user, Project project) : base(user, project) {
-        }
-
-        public bool canMarkAsDone() {
-            return true;
-        }
-
-        public bool canDeploy() {
-            return true;
+            this.CanMarkAsDone = true;
+            this.CanDeploy = true;
         }
     }
 

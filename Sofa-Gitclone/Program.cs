@@ -6,13 +6,6 @@ using Sofa_Gitclone.User;
 using System.Collections.Generic;
 
 
-BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, []);
-
-// set backlogitem state to doing
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep();
-Console.WriteLine(backlogItem.State);
-
 
 // user
 
@@ -27,15 +20,28 @@ var project2 = new Project("Project2");
 
 var adminDecorator = new ProductOwnerRoleDecorator(user1, project);
 var contributorDecorator = new DeveloperRoleDecorator(user2, project);
+var tester = new TesterRoleDecorator(user2, project);
 
 var adminDecorator2 = new ProductOwnerRoleDecorator(user2, project2);
+
+BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, []);
+
+// set backlogitem state to doing
+Console.WriteLine(backlogItem.State);
+backlogItem.nextStep(adminDecorator);
+backlogItem.nextStep(adminDecorator);
+backlogItem.nextStep(adminDecorator);
+backlogItem.nextStep(adminDecorator);
+backlogItem.nextStep(adminDecorator);
+backlogItem.nextStep(adminDecorator);
+Console.WriteLine(backlogItem.State);
+backlogItem.nextStep(adminDecorator);
+Console.WriteLine(backlogItem.State);
+backlogItem.nextStep(tester);
+Console.WriteLine(backlogItem.State);
 
 Console.WriteLine(adminDecorator);
 
 Console.WriteLine(contributorDecorator);
 
 Console.WriteLine(adminDecorator2);
-
-Console.WriteLine(adminDecorator.canMarkAsDone());
-Console.WriteLine(adminDecorator.canDeploy());
-Console.WriteLine(contributorDecorator.canMarkAsDone());

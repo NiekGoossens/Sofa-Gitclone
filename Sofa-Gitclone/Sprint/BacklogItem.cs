@@ -1,4 +1,5 @@
 ﻿using Sofa_Gitclone.Sprint.BacklogStates;
+using Sofa_Gitclone.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,12 @@ namespace Sofa_Gitclone.Sprint {
             State = new ToDo();
         }
 
-        public void nextStep() {
-            State.nextStep(this);
+        public void nextStep(RoleDecorator user) {
+            State.nextStep(this, user);
         }
 
-        public void previousStep() {
-            State.previousStep(this);
+        public void previousStep(RoleDecorator user) {
+            State.previousStep(this, user);
         }
     }
 }

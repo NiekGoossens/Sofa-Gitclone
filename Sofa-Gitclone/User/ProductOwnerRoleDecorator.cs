@@ -9,14 +9,8 @@ namespace Sofa_Gitclone.User {
 
 
         public ProductOwnerRoleDecorator(User user, Project project) : base(user, project) {
-        }
-
-        public bool canMarkAsDone() {
-            return true;
-        }
-
-        public bool canDeploy() {
-            return true;
+            this.CanDeploy = true;
+            this.CanMarkAsDone = true;
         }
 
 
