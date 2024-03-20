@@ -13,6 +13,8 @@ namespace Sofa_Gitclone.User {
         public bool CanDeploy;
         public bool CanMarkAsDone;
 
+        // notification group met case
+
         protected Project project;
 
         public RoleDecorator(User user, Project project) {
@@ -23,9 +25,8 @@ namespace Sofa_Gitclone.User {
             CanMarkAsDone = false;
         }
 
-        public void Update() {
+        public virtual void Update() {
             Console.WriteLine("User " + user.Name + " has been updated");
-
         }
     }
 }

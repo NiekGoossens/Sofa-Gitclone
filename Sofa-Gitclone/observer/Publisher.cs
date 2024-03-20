@@ -21,5 +21,11 @@ namespace Sofa_Gitclone.observer {
                 subscriber.Update();
             }
         }   
+
+        // notify admins
+
+        // notify scrum masters
+
+        // notify 
     }
 }
