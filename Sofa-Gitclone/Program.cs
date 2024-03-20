@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Sofa_Gitclone;
+using Sofa_Gitclone.observer;
 using Sofa_Gitclone.Sprint;
 using Sofa_Gitclone.Sprint.BacklogStates;
 using Sofa_Gitclone.User;
@@ -45,3 +46,12 @@ Console.WriteLine(adminDecorator);
 Console.WriteLine(contributorDecorator);
 
 Console.WriteLine(adminDecorator2);
+
+// observer
+Publisher publisher = new Publisher();
+ISubscriber subscriber = new ProductOwnerRoleDecorator(user1, project);
+ISubscriber subscriber2 = new DeveloperRoleDecorator(user2, project);
+
+publisher.Subscribe(subscriber);
+publisher.Subscribe(subscriber2);
+publisher.Notify();
