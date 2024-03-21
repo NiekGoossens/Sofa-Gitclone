@@ -1,4 +1,5 @@
-﻿using Sofa_Gitclone.Sprint.BacklogStates;
+﻿using Sofa_Gitclone.observer;
+using Sofa_Gitclone.Sprint.BacklogStates;
 using Sofa_Gitclone.User;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,14 @@ namespace Sofa_Gitclone.Sprint {
         public string Title { get; set; }
         public string Description { get; set; }
         public int storypoints { get; set; }
-        public List<string> Members { get; set; }
         public IBacklogItemState State { get; set; }
+        public ISubscriber Owner { get; set; }
 
-        public BacklogItem(string title, string description, int storypoints, List<string> members) {
+        public BacklogItem(string title, string description, int storypoints, ISubscriber owner) {
             Title = title;
             Description = description;
             this.storypoints = storypoints;
-            Members = members;
+            Owner = owner;
             State = new ToDo();
         }
 

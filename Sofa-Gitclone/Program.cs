@@ -22,50 +22,43 @@ var project2 = new Project("Project2");
 //project.AddDeveloper(user2);
 //project.AddProductOwner(user1);
 
+// observer
+Publisher publisher = new Publisher();
+ISubscriber productOwner = new ProductOwnerRoleDecorator(user1, project);
+ISubscriber developer = new DeveloperRoleDecorator(user2, project);
+ISubscriber tester = new TesterRoleDecorator(user1, project);
+
+publisher.Subscribe(productOwner);
+publisher.Subscribe(developer);
+publisher.Notify();
+
+
+
 
 
 // project add user
 
-var adminDecorator = new ProductOwnerRoleDecorator(user1, project);
-var contributorDecorator = new DeveloperRoleDecorator(user2, project);
-var tester = new TesterRoleDecorator(user2, project);
+Sprint sprint = new Sprint("Sprint1", project, );
+BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, tester);
 
-var adminDecorator2 = new ProductOwnerRoleDecorator(user2, project2);
 
-BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, []);
 
 // set backlogitem state to doing
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(adminDecorator);
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(tester);
-Console.WriteLine(backlogItem.State);
+//Console.WriteLine(backlogItem.State);
+//backlogItem.nextStep(developer);
+//backlogItem.nextStep(developer);
+//backlogItem.nextStep(developer);
+//backlogItem.nextStep(developer);
+//backlogItem.nextStep(developer);
+//backlogItem.nextStep(developer);
+//Console.WriteLine(backlogItem.State);
+//backlogItem.nextStep(adminDecorator);
+//Console.WriteLine(backlogItem.State);
+//backlogItem.nextStep(tester);
+//Console.WriteLine(backlogItem.State);
 
-Console.WriteLine(adminDecorator);
+//Console.WriteLine(adminDecorator);
 
-Console.WriteLine(contributorDecorator);
+//Console.WriteLine(contributorDecorator);
 
-Console.WriteLine(adminDecorator2);
-
-// observer
-Publisher publisher = new Publisher();
-ISubscriber subscriber = new ProductOwnerRoleDecorator(user1, project);
-ISubscriber subscriber2 = new DeveloperRoleDecorator(user2, project);
-
-publisher.Subscribe(subscriber);
-publisher.Subscribe(subscriber2);
-publisher.Notify();
-
-// notificaties via bepaald platform
-// geef user platform mee en gebruik methode van dit platform
-// notificaties naar bepaalde personen
-// geef notificatie groep mee in notify methode en gebruik override in roles voor controle of deze gebruiker in groep zit
-// hoe doen we dat max 1 iemand product owner is
-// 
+//Console.WriteLine(adminDecorator2);
