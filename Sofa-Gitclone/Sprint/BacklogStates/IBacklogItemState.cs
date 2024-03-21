@@ -1,4 +1,5 @@
-﻿using Sofa_Gitclone.User;
+﻿using Sofa_Gitclone.observer;
+using Sofa_Gitclone.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
     public interface IBacklogItemState {
 
         // stuur ook gebruiker mee om te controleren of de gebruiker de juiste rol heeft om de actie uit te voeren
-        void nextStep(BacklogItem item, RoleDecorator user);
-        void previousStep(BacklogItem item, RoleDecorator user);
+        void nextStep(BacklogItem item, ISubscriber user);
+        void previousStep(BacklogItem item, ISubscriber user);
   
     }
 

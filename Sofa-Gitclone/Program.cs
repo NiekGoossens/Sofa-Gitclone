@@ -3,6 +3,7 @@ using Sofa_Gitclone;
 using Sofa_Gitclone.observer;
 using Sofa_Gitclone.Sprint;
 using Sofa_Gitclone.Sprint.BacklogStates;
+using Sofa_Gitclone.Sprint.SprintFactories;
 using Sofa_Gitclone.User;
 using System.Collections.Generic;
 
@@ -45,7 +46,9 @@ BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, teste
 sprint.AddBacklogItem(backlogItem);
 
 Console.WriteLine(sprint.backlogItems[0].Owner);
+// 
 
+//sprint.backlogItems[0].nextStep(developer);
 
 
 
