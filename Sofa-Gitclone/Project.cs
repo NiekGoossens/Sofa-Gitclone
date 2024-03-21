@@ -14,40 +14,21 @@ namespace Sofa_Gitclone {
         public string Name { get; set; }
         public List<ISubscriber> Users { get; set; }
         public ISubscriber ProductOwner { get; set; }
-        public Publisher Publisher { get; set; }
 
         public Project(string name) {
 
             this.Name = name;
         }
 
-        public void AddProductOwner(User.User productOwner) {
-
-            var newUser = new ProductOwnerRoleDecorator(productOwner, this);
-            ISubscriber newOwner = newUser;
-            this.ProductOwner = newOwner;
+        public void AddProductOwner(ISubscriber productOwner) {
+            this.ProductOwner = productOwner;
 
         }
 
-        public void AddUser(RoleDecorator user) {
-            ISubscriber subscriber = user;
-            this.Users.Add(subscriber);
+        public void AddUser(ISubscriber user) {
+            this.Users.Add(user);
         }
 
-        public void AddTester(User.User user) {
-            var newUser = new TesterRoleDecorator(user, this);
-            AddUser(newUser);
-        }
-
-        public void AddDeveloper(User.User user) {
-            var newUser = new DeveloperRoleDecorator(user, this);
-            AddUser(newUser);
-        }
-
-        public void AddScrumMaster(User.User user) {
-            var newUser = new ScrumMasterRoleDecorator(user, this);
-            AddUser(newUser);
-        }
 
     }
 }
