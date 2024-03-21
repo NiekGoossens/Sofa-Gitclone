@@ -12,6 +12,7 @@ namespace Sofa_Gitclone.Sprint {
         public DateTime startDate;
         public DateTime endDate;
 
+
         public Sprint(string name, DateTime startDate, DateTime endDate) {
             this.name = name;
             this.startDate = startDate;

@@ -33,13 +33,19 @@ publisher.Subscribe(developer);
 publisher.Notify();
 
 
+DateTime date = new DateTime(2021, 12, 12);
+DateTime date2 = new DateTime(2021, 12, 12);
 
 
 
 // project add user
-
-Sprint sprint = new Sprint("Sprint1", project, );
+FeedbackSprintFactory feedbackSprintFactory = new FeedbackSprintFactory();
+Sprint sprint =  feedbackSprintFactory.CreateSprint("new sprint", date, date2);
 BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, tester);
+sprint.AddBacklogItem(backlogItem);
+
+Console.WriteLine(sprint.backlogItems[0].Owner);
+
 
 
 
