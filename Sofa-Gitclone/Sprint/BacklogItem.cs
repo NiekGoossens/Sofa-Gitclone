@@ -34,7 +34,12 @@ namespace Sofa_Gitclone.Sprint {
         }
 
         public void CreateDiscussion(string name, string description, RoleDecorator user) {
+
             this.discussions.Add(new Discussion(name, description, user));
+        }
+
+        public void CreateComment(int discussionNumber, Comment comment) {
+            this.discussions[discussionNumber].AddComment(comment);
         }
     }
 }
