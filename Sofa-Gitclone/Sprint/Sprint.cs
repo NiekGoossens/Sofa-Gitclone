@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sofa_Gitclone.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Sofa_Gitclone.Sprint {
         public string name;
         public DateTime startDate;
         public DateTime endDate;
+        public List<RoleDecorator> users;
+        
 
 
         public Sprint(string name, DateTime startDate, DateTime endDate) {
