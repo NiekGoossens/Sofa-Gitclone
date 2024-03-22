@@ -25,9 +25,9 @@ var project2 = new Project("Project2");
 
 // observer
 Publisher publisher = new Publisher();
-ISubscriber productOwner = new ProductOwnerRoleDecorator(user1, project);
-ISubscriber developer = new DeveloperRoleDecorator(user2, project);
-ISubscriber tester = new TesterRoleDecorator(user1, project);
+RoleDecorator productOwner = new ProductOwnerRoleDecorator(user1, project);
+RoleDecorator developer = new DeveloperRoleDecorator(user2, project);
+RoleDecorator tester = new TesterRoleDecorator(user1, project);
 
 TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2);
 
@@ -55,6 +55,10 @@ tester2.Update();
 publisher.Subscribe(tester2);
 publisher.Notify();
 
+sprint.AddUser(tester2);
+sprint.AddUser(developer);
+
+sprint.NotifyUsers();
 
 
 // set backlogitem state to doing
