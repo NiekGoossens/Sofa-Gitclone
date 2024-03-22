@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.Export {
-    internal class SprintExport {
+    public interface SprintExport {
+        void CreateExport(Sprint sprint);
     }
 }

@@ -3,6 +3,7 @@ using Sofa_Gitclone;
 using Sofa_Gitclone.observer;
 using Sofa_Gitclone.Sprint;
 using Sofa_Gitclone.Sprint.BacklogStates;
+using Sofa_Gitclone.Sprint.Export;
 using Sofa_Gitclone.Sprint.SprintFactories;
 using Sofa_Gitclone.User;
 using System.Collections.Generic;
@@ -60,23 +61,5 @@ sprint.AddUser(developer);
 
 sprint.NotifyUsers();
 
-
-// set backlogitem state to doing
-//Console.WriteLine(backlogItem.State);
-//backlogItem.nextStep(developer);
-//backlogItem.nextStep(developer);
-//backlogItem.nextStep(developer);
-//backlogItem.nextStep(developer);
-//backlogItem.nextStep(developer);
-//backlogItem.nextStep(developer);
-//Console.WriteLine(backlogItem.State);
-//backlogItem.nextStep(adminDecorator);
-//Console.WriteLine(backlogItem.State);
-//backlogItem.nextStep(tester);
-//Console.WriteLine(backlogItem.State);
-
-//Console.WriteLine(adminDecorator);
-
-//Console.WriteLine(contributorDecorator);
-
-//Console.WriteLine(adminDecorator2);
+SprintExport sprintExport = new PdfExport();
+sprintExport.CreateExport(sprint);

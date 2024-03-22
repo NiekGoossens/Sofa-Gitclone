@@ -1,4 +1,5 @@
-﻿using Sofa_Gitclone.User;
+﻿using Sofa_Gitclone.Sprint.Export;
+using Sofa_Gitclone.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,11 @@ namespace Sofa_Gitclone.Sprint {
                 user.Update();
             }
         }
-        
+
+        public Sprint GetVariables() {
+            return this;
+        }
+
         //pipeline in sprint
 
     }
