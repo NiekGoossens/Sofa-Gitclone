@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Sofa_Gitclone;
+using Sofa_Gitclone.observer;
 using Sofa_Gitclone.Sprint;
 using Sofa_Gitclone.Sprint.BacklogStates;
+using Sofa_Gitclone.Sprint.Export;
+using Sofa_Gitclone.Sprint.SprintFactories;
 using Sofa_Gitclone.User;
 using System.Collections.Generic;
 
@@ -9,39 +12,54 @@ using System.Collections.Generic;
 
 // user
 
-var user1 = new User( "User1" );
-var user2 = new User( "User2" );
+var user1 = new User("User1");
+var user2 = new User("User2");
+
 
 // project
 var project = new Project("Project1");
 var project2 = new Project("Project2");
 
+//project.AddTester(user1);
+//project.AddDeveloper(user2);
+//project.AddProductOwner(user1);
+
+// observer
+Publisher publisher = new Publisher();
+RoleDecorator productOwner = new ProductOwnerRoleDecorator(user1, project);
+RoleDecorator developer = new DeveloperRoleDecorator(user2, project);
+RoleDecorator tester = new TesterRoleDecorator(user1, project);
+
+TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2);
+
+publisher.Subscribe(productOwner);
+publisher.Subscribe(developer);
+publisher.Notify();
+
+
+DateTime date = new DateTime(2021, 12, 12);
+DateTime date2 = new DateTime(2021, 12, 12);
+
+
+
 // project add user
+FeedbackSprintFactory feedbackSprintFactory = new FeedbackSprintFactory();
+Sprint sprint =  feedbackSprintFactory.CreateSprint("new sprint", date, date2);
+BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, tester);
+sprint.AddBacklogItem(backlogItem);
 
-var adminDecorator = new ProductOwnerRoleDecorator(user1, project);
-var contributorDecorator = new DeveloperRoleDecorator(user2, project);
-var tester = new TesterRoleDecorator(user2, project);
+Console.WriteLine(sprint.backlogItems[0].Owner);
+// 
 
-var adminDecorator2 = new ProductOwnerRoleDecorator(user2, project2);
+sprint.backlogItems[0].nextStep(tester2);
+tester2.Update();
+publisher.Subscribe(tester2);
+publisher.Notify();
 
-BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, []);
+sprint.AddUser(tester2);
+sprint.AddUser(developer);
 
-// set backlogitem state to doing
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-backlogItem.nextStep(adminDecorator);
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(adminDecorator);
-Console.WriteLine(backlogItem.State);
-backlogItem.nextStep(tester);
-Console.WriteLine(backlogItem.State);
+sprint.NotifyUsers();
 
-Console.WriteLine(adminDecorator);
-
-Console.WriteLine(contributorDecorator);
-
-Console.WriteLine(adminDecorator2);
+SprintExport sprintExport = new PdfExport();
+sprintExport.CreateExport(sprint);

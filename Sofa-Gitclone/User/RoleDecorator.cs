@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Sofa_Gitclone.observer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    public class RoleDecorator {
+    public class RoleDecorator : ISubscriber {
         protected User user;
 
         public bool CanTest;
         public bool CanDeploy;
         public bool CanMarkAsDone;
+
+        // notification group met case
 
         protected Project project;
 
@@ -22,16 +25,8 @@ namespace Sofa_Gitclone.User {
             CanMarkAsDone = false;
         }
 
-        //public bool canTest() {
-        //    return false;
-        //}
-
-        //public bool canDeploy() {
-        //    return false;
-        //}
-
-        //public bool canMarkAsDone() {
-        //    return false;
-        //}
+        public virtual void Update() {
+            Console.WriteLine("User " + user.Name + " has been updated");
+        }
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sofa_Gitclone.Sprint.Subscription {
-    internal class ConcreteSubscriber {
+namespace Sofa_Gitclone.observer {
+    public interface ISubscriber {
+        public void Update();
+
     }
 }
