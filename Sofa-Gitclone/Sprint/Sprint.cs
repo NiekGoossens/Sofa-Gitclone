@@ -25,6 +25,8 @@ namespace Sofa_Gitclone.Sprint {
         public void AddBacklogItem(BacklogItem backlogItem) {
             this.backlogItems.Add(backlogItem);
         }
+        
+        //pipeline in sprint
 
     }
 }
