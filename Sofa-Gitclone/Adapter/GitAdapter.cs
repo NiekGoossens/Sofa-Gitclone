@@ -1,4 +1,6 @@
-﻿namespace Sofa_Gitclone.Adapter;
+﻿using Sofa_Gitclone.Sprint;
+
+namespace Sofa_Gitclone.Adapter;
 
 public class GitAdapter : IGit {
     private GitSharp _gitSharp;
@@ -7,8 +9,8 @@ public class GitAdapter : IGit {
         _gitSharp = new GitSharp();
     }
     
-    public void Commit() {
-        _gitSharp.Commit();
+    public void Commit(BacklogItem backlogItem) {
+        _gitSharp.Commit(backlogItem);
     }
     
     public void Push() {

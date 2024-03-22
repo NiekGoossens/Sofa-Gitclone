@@ -1,8 +1,10 @@
-﻿namespace Sofa_Gitclone.Adapter;
+﻿using Sofa_Gitclone.Sprint;
+
+namespace Sofa_Gitclone.Adapter;
 
 public class GitSharp {
-    public void Commit() {
-        Console.WriteLine("Committing changes using GitSharp");
+    public void Commit(BacklogItem backlogItem) {
+        Console.WriteLine("Committing changes using GitSharp to the backlog item: " + backlogItem.Title);
     }
     
     public void Push() {
