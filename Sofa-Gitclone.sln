@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sofa-Gitclone", "Sofa-Gitclone\Sofa-Gitclone.csproj", "{4E9CF0C5-FA58-4F44-853F-65715934DF12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sofa-Gitclone.Test", "Sofa-Gitclone.Test\Sofa-Gitclone.Test.csproj", "{9576C6D8-78A2-4328-82E5-CE9A5DF5C402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4E9CF0C5-FA58-4F44-853F-65715934DF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E9CF0C5-FA58-4F44-853F-65715934DF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E9CF0C5-FA58-4F44-853F-65715934DF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9576C6D8-78A2-4328-82E5-CE9A5DF5C402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9576C6D8-78A2-4328-82E5-CE9A5DF5C402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9576C6D8-78A2-4328-82E5-CE9A5DF5C402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9576C6D8-78A2-4328-82E5-CE9A5DF5C402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
