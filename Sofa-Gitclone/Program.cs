@@ -65,13 +65,13 @@ SprintExport sprintExport = new PdfExport();
 sprintExport.CreateExport(sprint);
 
 // create discussion
-sprint.CreateDiscussion("discussion", "description", productOwner);
+sprint.backlogItems[0].CreateDiscussion("discussion", "description", productOwner);
 //create comments
 Comment comment = new Comment("comment", tester2);
-sprint.discussions[0].AddComment(comment);
+sprint.backlogItems[0].discussions[0].AddComment(comment);
 // create comment on comment
 Comment comment2 = new Comment("comment2", tester2);
-sprint.discussions[0].comments[0].AddComment(comment2);
+sprint.backlogItems[0].discussions[0].comments[0].AddComment(comment2);
 
 // close discussion
-sprint.discussions[0].Close();
+sprint.backlogItems[0].discussions[0].Close();

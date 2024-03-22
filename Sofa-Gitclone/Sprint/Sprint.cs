@@ -14,7 +14,6 @@ namespace Sofa_Gitclone.Sprint {
         public DateTime startDate;
         public DateTime endDate;
         public List<RoleDecorator> users;
-        public List<Discussion> discussions;
 
 
         public Sprint(string name, DateTime startDate, DateTime endDate) {
@@ -22,7 +21,6 @@ namespace Sofa_Gitclone.Sprint {
             this.startDate = startDate;
             this.endDate = endDate;
             this.users = new List<RoleDecorator>();
-            this.discussions = new List<Discussion>();
         }
 
         public void AddBacklogItem(BacklogItem backlogItem) {
@@ -46,10 +44,6 @@ namespace Sofa_Gitclone.Sprint {
 
         public Sprint GetVariables() {
             return this;
-        }
-
-        public void CreateDiscussion(string name, string description, RoleDecorator user) {
-            this.discussions.Add(new Discussion(name, description, user));
         }
 
         //pipeline in sprint
