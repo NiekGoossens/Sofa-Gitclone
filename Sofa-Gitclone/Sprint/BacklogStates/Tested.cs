@@ -1,4 +1,5 @@
-﻿using Sofa_Gitclone.User;
+﻿using Sofa_Gitclone.observer;
+using Sofa_Gitclone.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Tested : IBacklogItemState {
         public void nextStep(BacklogItem item, RoleDecorator user) {
 
-            if (user.CanMarkAsDone)
-            {
+            if (user.CanTest) {
                 item.State = new Done();
             }
             // else send notification
