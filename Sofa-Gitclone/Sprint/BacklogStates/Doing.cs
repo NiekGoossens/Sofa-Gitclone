@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Doing : IBacklogItemState {
 
-        public void nextStep(BacklogItem item, ISubscriber user) {
+        public void nextStep(BacklogItem item, RoleDecorator user) {
             item.State = new ReadyForTesting();
 
             // implement notification
         }
 
-        public void previousStep(BacklogItem item, ISubscriber user) {
+        public void previousStep(BacklogItem item, RoleDecorator user) {
             item.State = new ToDo();
         }
     }

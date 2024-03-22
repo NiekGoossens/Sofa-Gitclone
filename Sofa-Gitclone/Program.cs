@@ -29,6 +29,8 @@ ISubscriber productOwner = new ProductOwnerRoleDecorator(user1, project);
 ISubscriber developer = new DeveloperRoleDecorator(user2, project);
 ISubscriber tester = new TesterRoleDecorator(user1, project);
 
+TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2);
+
 publisher.Subscribe(productOwner);
 publisher.Subscribe(developer);
 publisher.Notify();
@@ -48,7 +50,10 @@ sprint.AddBacklogItem(backlogItem);
 Console.WriteLine(sprint.backlogItems[0].Owner);
 // 
 
-//sprint.backlogItems[0].nextStep(developer);
+sprint.backlogItems[0].nextStep(tester2);
+tester2.Update();
+publisher.Subscribe(tester2);
+publisher.Notify();
 
 
 

@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class ReadyForTesting : IBacklogItemState {
-        public void nextStep(BacklogItem item, ISubscriber user) {
-            Console.WriteLine(user.CanTest);
-            Console.WriteLine(user);
-            if (user.CanTest)
-            {
+        public void nextStep(BacklogItem item, RoleDecorator user) {
+            //Console.WriteLine(user.CanTest);
+            //Console.WriteLine(user);
+            if (user.CanTest) {
                 item.State = new Tested();
             }
             // else send failed notification
         }
 
-        public void previousStep(BacklogItem item, ISubscriber user) {
+        public void previousStep(BacklogItem item, RoleDecorator user) {
             item.State = new ToDo();
         }
     }
