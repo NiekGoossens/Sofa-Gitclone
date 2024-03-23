@@ -4,22 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sofa_Gitclone.Sprint.SprintFactories
-{
-    public class FeedbackSprint : Sprint
-    {
+namespace Sofa_Gitclone.Sprint.SprintFactories {
+    public class FeedbackSprint : Sprint {
         protected bool IsReviewing;
+        protected string? Review;
+        protected bool FinishedSprint;
 
-        public FeedbackSprint(string name, DateTime startDate, DateTime endDate, Project project) : base(name, startDate, endDate, project)
-        {
+        public FeedbackSprint(string name, DateTime startDate, DateTime endDate, Project project) : base(name, startDate, endDate, project) {
+            this.FinishedSprint = false;
         }
 
         public void StartReview() {
             this.IsReviewing = true;
         }
 
+        public void UploadReview(string review) {
+            this.Review = review;
+        }
+
         public void EndReview() {
-            this.IsReviewing = false;
+            if (this.Review != null) {
+                this.IsReviewing = false;
+                this.IsFinished = true;
+            } else {
+                Console.WriteLine("Could not end review as no review has been uploaded yet");
+            }
         }
     }
 }
