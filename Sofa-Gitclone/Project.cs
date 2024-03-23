@@ -13,7 +13,7 @@ using Sofa_Gitclone.Sprint;
 namespace Sofa_Gitclone {
     public class Project {
         public string Name { get; set; }
-        public List<ISubscriber> Users { get; set; }
+        public List<ISubscriber>? Users { get; set; }
         public ISubscriber ProductOwner { get; set; }
         private GitAdapter _gitAdapter;
 

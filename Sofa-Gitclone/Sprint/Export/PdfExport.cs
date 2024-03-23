@@ -11,7 +11,6 @@ namespace Sofa_Gitclone.Sprint.Export {
             Console.WriteLine("Exporting to PDF");
             Sprint sprint2 = sprint.GetVariables();
             Console.WriteLine("Exporting Sprint: " + sprint2.name);
-            Console.WriteLine("Exporting Sprint: " + sprint.GetVariables);
 
             
         }
