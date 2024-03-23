@@ -8,7 +8,7 @@ namespace Sofa_Gitclone.Sprint.SprintFactories
 {
     public class FeedbackSprint : Sprint
     {
-        public FeedbackSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+        public FeedbackSprint(string name, DateTime startDate, DateTime endDate, Project project) : base(name, startDate, endDate, project)
         {
         }
     }

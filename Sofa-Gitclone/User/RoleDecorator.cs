@@ -25,8 +25,8 @@ namespace Sofa_Gitclone.User {
             CanMarkAsDone = false;
         }
 
-        public virtual void Update() {
-            Console.WriteLine("User " + user.Name + " has been notified");
+        public virtual void Update(string message) {
+            Console.WriteLine("Notification: " + message);
         }
     }
 }

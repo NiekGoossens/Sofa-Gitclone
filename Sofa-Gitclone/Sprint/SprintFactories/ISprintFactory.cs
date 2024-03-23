@@ -9,6 +9,6 @@ namespace Sofa_Gitclone.Sprint.SprintFactories
     public interface ISprintFactory
     {
 
-        public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate);
+        public Sprint CreateSprint(string name, DateTime startDate, DateTime endDate, Project project);
     }
 }

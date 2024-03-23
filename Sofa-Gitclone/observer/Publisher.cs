@@ -16,9 +16,9 @@ namespace Sofa_Gitclone.observer {
             subscribers.Remove(subscriber);
         }
 
-        public void Notify() {
+        public void Notify(string message) {
             foreach (var subscriber in subscribers) {
-                subscriber.Update();
+                subscriber.Update(message);
             }
         }
 

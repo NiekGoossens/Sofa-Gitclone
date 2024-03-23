@@ -8,7 +8,7 @@ namespace Sofa_Gitclone.Sprint.SprintFactories
 {
     public class DeploymentSprint : Sprint
     {
-        public DeploymentSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+        public DeploymentSprint(string name, DateTime startDate, DateTime endDate, Project project) : base(name, startDate, endDate, project)
         {
         }
     }

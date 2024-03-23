@@ -19,6 +19,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
 
         public void previousStep(BacklogItem item, RoleDecorator user) {
             item.State = new ToDo();
+            item.sprint.project.ProductOwner.Update(item.Title + " has been moved back to ToDo");
         }
     }
 }

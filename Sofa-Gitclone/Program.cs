@@ -34,7 +34,7 @@ TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2);
 
 publisher.Subscribe(productOwner);
 publisher.Subscribe(developer);
-publisher.Notify();
+publisher.Notify("test all");
 
 
 DateTime date = new DateTime(2021, 12, 12);
@@ -44,27 +44,27 @@ DateTime date2 = new DateTime(2021, 12, 12);
 
 // project add user
 FeedbackSprintFactory feedbackSprintFactory = new FeedbackSprintFactory();
-Sprint sprint =  feedbackSprintFactory.CreateSprint("new sprint", date, date2);
-BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, tester);
+Sprint sprint =  feedbackSprintFactory.CreateSprint("new sprint", date, date2, project);
+BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, tester, sprint);
 sprint.AddBacklogItem(backlogItem);
 
 Console.WriteLine(sprint.backlogItems[0].Owner);
 // 
 
 sprint.backlogItems[0].nextStep(tester2);
-tester2.Update();
+tester2.Update("test 1");
 publisher.Subscribe(tester2);
-publisher.Notify();
+publisher.Notify("test all 2");
 
 sprint.AddUser(tester2);
 sprint.AddUser(developer);
 
-sprint.NotifyUsers();
+sprint.NotifyUsers("testing all sprint members");
 
 SprintExport sprintExport = new PdfExport();
 sprintExport.CreateExport(sprint);
 
-BacklogItem backlogItem2 = new BacklogItem("test", "test backlog item", 32, tester);
+BacklogItem backlogItem2 = new BacklogItem("test", "test backlog item", 32, tester, sprint);
 sprint.AddBacklogItem(backlogItem2);
 
 // create discussion
@@ -74,10 +74,10 @@ Console.WriteLine(sprint.backlogItems[1].discussions[0]);
 
 //create comments
 Comment comment = new Comment("comment", tester2);
-sprint.backlogItems[0].CreateComment(0, comment);
+sprint.backlogItems[1].CreateComment(0, comment);
 // create comment on comment
 Comment comment2 = new Comment("comment2", tester2);
-sprint.backlogItems[0].CreateComment(0, comment2);
+sprint.backlogItems[1].CreateComment(0, comment2);
 
 // close discussion
-sprint.backlogItems[0].discussions[0].Close();
+sprint.backlogItems[1].discussions[0].Close();

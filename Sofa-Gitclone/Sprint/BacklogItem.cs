@@ -15,10 +15,12 @@ namespace Sofa_Gitclone.Sprint {
         public IBacklogItemState State { get; set; }
         public ISubscriber Owner { get; set; }
         public List<Discussion> discussions;
-        Publisher publisher = new Publisher();
+        Publisher publisher;
         public Sprint sprint;
+        public List<Activity> activities;
 
         public BacklogItem(string title, string description, int storypoints, ISubscriber owner, Sprint sprint) {
+            this.publisher = new Publisher();
             Title = title;
             Description = description;
             this.storypoints = storypoints;
@@ -27,16 +29,11 @@ namespace Sofa_Gitclone.Sprint {
             this.discussions = new List<Discussion>();
             publisher.Subscribe(this.Owner);
             this.sprint = sprint;
+            this.activities = new List<Activity>();
         }
 
         public void nextStep(RoleDecorator user) {
             State.nextStep(this, user);
-            if (State is ReadyForTesting) {
-                var testers = this.sprint.GetTesters();
-                foreach (var tester in testers) {
-                    tester.Update();
-                }
-            }
         }
 
         public void previousStep(RoleDecorator user) {
@@ -52,6 +49,13 @@ namespace Sofa_Gitclone.Sprint {
             this.discussions[discussionNumber].AddComment(comment);
         }
 
-        
+        public void AddActivity(string name, RoleDecorator user) {
+            this.activities.Add(new Activity(name, user));
+        }
+
+        public void FinishActivity(int activityNumber) {
+            this.activities[activityNumber].MarkAsDone();
+        }
+
     }
 }

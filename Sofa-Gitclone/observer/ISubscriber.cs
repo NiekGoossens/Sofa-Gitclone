@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.observer {
     public interface ISubscriber {
-        public void Update();
+        public void Update(string message);
 
     }
 }

@@ -13,7 +13,6 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
             if (user.CanTest) {
                 item.State = new Done();
             }
-            // else send notification
         }
 
         public void previousStep(BacklogItem item, RoleDecorator user) {

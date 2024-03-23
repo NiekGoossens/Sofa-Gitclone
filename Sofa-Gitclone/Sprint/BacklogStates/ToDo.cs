@@ -10,8 +10,6 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class ToDo : IBacklogItemState  {
         public void nextStep(BacklogItem item, RoleDecorator user) {
             item.State = new Doing();
-
-            // implement notification
         }
 
         public void previousStep(BacklogItem item, RoleDecorator user) {

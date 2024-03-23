@@ -13,8 +13,8 @@ namespace Sofa_Gitclone.User {
             this.CanMarkAsDone = true;
         }
 
-        public override void Update() {
-            Console.WriteLine("Product Owner " + user.Name + " has been notified");
+        public override void Update(string message) {
+            Console.WriteLine(message);
         }
 
 

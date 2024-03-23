@@ -38,9 +38,9 @@ namespace Sofa_Gitclone.Sprint {
             this.users.Remove(user);
         }
 
-        public void NotifyUsers() {
+        public void NotifyUsers(string message) {
             foreach (RoleDecorator user in users) {
-                user.Update();
+                user.Update(message);
             }
         }
 
