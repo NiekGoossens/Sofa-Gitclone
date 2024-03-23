@@ -15,5 +15,14 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
         public void previousStep(BacklogItem item, RoleDecorator user) {
             item.State = new Tested();
         }
+
+        public void CreateDiscussion(string name, string description, RoleDecorator user) {
+
+            Console.WriteLine("Cannot create discussins for finished items");
+        }
+
+        public void CreateComment(int discussionNumber, Comment comment) {
+            Console.WriteLine("Cannot create comments for finished items");
+        }
     }
 }

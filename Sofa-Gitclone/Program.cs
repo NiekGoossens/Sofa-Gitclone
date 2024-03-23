@@ -63,3 +63,15 @@ sprint.NotifyUsers();
 
 SprintExport sprintExport = new PdfExport();
 sprintExport.CreateExport(sprint);
+
+// create discussion
+sprint.backlogItems[0].CreateDiscussion("discussion", "description", productOwner);
+//create comments
+Comment comment = new Comment("comment", tester2);
+sprint.backlogItems[0].CreateComment(0, comment);
+// create comment on comment
+Comment comment2 = new Comment("comment2", tester2);
+sprint.backlogItems[0].CreateComment(0, comment2);
+
+// close discussion
+sprint.backlogItems[0].discussions[0].Close();

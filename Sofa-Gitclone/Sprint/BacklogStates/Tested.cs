@@ -12,6 +12,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
 
             if (user.CanTest) {
                 item.State = new Done();
+                ie
             }
             // else send notification
         }

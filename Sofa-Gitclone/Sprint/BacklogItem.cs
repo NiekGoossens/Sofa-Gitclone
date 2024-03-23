@@ -14,6 +14,7 @@ namespace Sofa_Gitclone.Sprint {
         public int storypoints { get; set; }
         public IBacklogItemState State { get; set; }
         public ISubscriber Owner { get; set; }
+        public List<Discussion> discussions;
 
         public BacklogItem(string title, string description, int storypoints, ISubscriber owner) {
             Title = title;
@@ -21,6 +22,7 @@ namespace Sofa_Gitclone.Sprint {
             this.storypoints = storypoints;
             Owner = owner;
             State = new ToDo();
+            this.discussions = new List<Discussion>();
         }
 
         public void nextStep(RoleDecorator user) {
@@ -29,6 +31,15 @@ namespace Sofa_Gitclone.Sprint {
 
         public void previousStep(RoleDecorator user) {
             State.previousStep(this, user);
+        }
+
+        public void CreateDiscussion(string name, string description, RoleDecorator user) {
+
+            this.discussions.Add(new Discussion(name, description, user));
+        }
+
+        public void CreateComment(int discussionNumber, Comment comment) {
+            this.discussions[discussionNumber].AddComment(comment);
         }
     }
 }
