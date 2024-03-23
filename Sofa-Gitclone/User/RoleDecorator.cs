@@ -26,7 +26,7 @@ namespace Sofa_Gitclone.User {
         }
 
         public virtual void Update() {
-            Console.WriteLine("User " + user.Name + " has been updated");
+            Console.WriteLine("User " + user.Name + " has been notified");
         }
     }
 }

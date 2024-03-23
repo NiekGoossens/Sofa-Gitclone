@@ -20,12 +20,7 @@ namespace Sofa_Gitclone.observer {
             foreach (var subscriber in subscribers) {
                 subscriber.Update();
             }
-        }   
+        }
 
-        // notify admins
-
-        // notify scrum masters
-
-        // notify 
     }
 }

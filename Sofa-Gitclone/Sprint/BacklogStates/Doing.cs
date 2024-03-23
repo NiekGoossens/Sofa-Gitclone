@@ -10,7 +10,10 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Doing : IBacklogItemState {
 
         public void nextStep(BacklogItem item, RoleDecorator user) {
+            
             item.State = new ReadyForTesting();
+
+            
 
             // implement notification
         }

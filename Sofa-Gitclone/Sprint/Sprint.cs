@@ -14,13 +14,15 @@ namespace Sofa_Gitclone.Sprint {
         public DateTime startDate;
         public DateTime endDate;
         public List<RoleDecorator> users;
+        public Project project;
 
 
-        public Sprint(string name, DateTime startDate, DateTime endDate) {
+        public Sprint(string name, DateTime startDate, DateTime endDate, Project project) {
             this.name = name;
             this.startDate = startDate;
             this.endDate = endDate;
             this.users = new List<RoleDecorator>();
+            this.project = project;
         }
 
         public void AddBacklogItem(BacklogItem backlogItem) {
@@ -44,6 +46,10 @@ namespace Sofa_Gitclone.Sprint {
 
         public Sprint GetVariables() {
             return this;
+        }
+
+        public List<RoleDecorator> GetTesters() {
+            return users.Where(u => u.CanTest).ToList();
         }
 
         //pipeline in sprint
