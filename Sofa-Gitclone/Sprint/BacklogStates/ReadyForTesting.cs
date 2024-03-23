@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class ReadyForTesting : IBacklogItemState {
-        public void nextStep(BacklogItem item, RoleDecorator user) {
+        public void nextStep(BacklogItem item, UserDecorator user) {
             if (user.CanTest) {
                 item.State = new Tested();
             } else {
@@ -16,7 +16,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
             }
         }
 
-        public void previousStep(BacklogItem item, RoleDecorator user) {
+        public void previousStep(BacklogItem item, UserDecorator user) {
             item.State = new ToDo();
             item.sprint.project.ProductOwner.Update(item.Title + " has been moved back to ToDo");
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Doing : IBacklogItemState {
 
-        public void nextStep(BacklogItem item, RoleDecorator user) {
+        public void nextStep(BacklogItem item, UserDecorator user) {
 
             // Check if all activities are done
             bool UnfinishedActivity = false;
@@ -36,7 +36,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
 
         }
 
-        public void previousStep(BacklogItem item, RoleDecorator user) {
+        public void previousStep(BacklogItem item, UserDecorator user) {
             item.State = new ToDo();
         }
 

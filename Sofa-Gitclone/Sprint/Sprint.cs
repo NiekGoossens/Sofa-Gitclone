@@ -13,7 +13,7 @@ namespace Sofa_Gitclone.Sprint {
         public string name;
         public DateTime startDate;
         public DateTime endDate;
-        public List<RoleDecorator> users;
+        public List<UserDecorator> users;
         public Project project;
         public bool IsFinished;
 
@@ -22,7 +22,7 @@ namespace Sofa_Gitclone.Sprint {
             this.name = name;
             this.startDate = startDate;
             this.endDate = endDate;
-            this.users = new List<RoleDecorator>();
+            this.users = new List<UserDecorator>();
             this.project = project;
             this.IsFinished = false;
             this.backlogItems = new List<BacklogItem>();
@@ -43,7 +43,7 @@ namespace Sofa_Gitclone.Sprint {
             }
         }
 
-        public void AddUser(RoleDecorator user) {
+        public void AddUser(UserDecorator user) {
             if (CanPerform())
             {
                 users.Add(user);
@@ -51,14 +51,14 @@ namespace Sofa_Gitclone.Sprint {
 
         }
 
-        public void RemoveUser(RoleDecorator user) {
+        public void RemoveUser(UserDecorator user) {
             if (CanPerform()) {
                 this.users.Remove(user);
             }
         }
 
         public void NotifyUsers(string message) {
-            foreach (RoleDecorator user in users) {
+            foreach (UserDecorator user in users) {
                 user.Update(message);
             }
         }
@@ -67,7 +67,7 @@ namespace Sofa_Gitclone.Sprint {
             return this;
         }
 
-        public List<RoleDecorator> GetTesters() {
+        public List<UserDecorator> GetTesters() {
             return users.Where(u => u.CanTest).ToList();
         }
 

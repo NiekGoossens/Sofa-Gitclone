@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    public class RoleDecorator : ISubscriber {
+    public class UserDecorator : ISubscriber {
         protected User user;
 
         public bool CanTest;
@@ -19,7 +19,7 @@ namespace Sofa_Gitclone.User {
 
         protected Project project;
 
-        public RoleDecorator(User user, Project project, INotification notificationPrefference) {
+        public UserDecorator(User user, Project project, INotification notificationPrefference) {
             this.user = user;
             this.project = project;
             CanTest = false;

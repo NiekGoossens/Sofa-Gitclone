@@ -27,11 +27,11 @@ var project2 = new Project("Project2");
 
 // observer
 Publisher publisher = new Publisher();
-RoleDecorator productOwner = new ProductOwnerRoleDecorator(user1, project, new SlackNotification());
-RoleDecorator developer = new DeveloperRoleDecorator(user2, project, new EmailNotification());
-RoleDecorator tester = new TesterRoleDecorator(user1, project, new EmailNotification());
+UserDecorator productOwner = new ProductOwner(user1, project, new SlackNotification());
+UserDecorator developer = new Developer(user2, project, new EmailNotification());
+UserDecorator tester = new Tester(user1, project, new EmailNotification());
 
-TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2, new SlackNotification());
+Tester tester2 = new Tester(user2, project2, new SlackNotification());
 
 publisher.Subscribe(productOwner);
 publisher.Subscribe(developer);

@@ -32,15 +32,15 @@ namespace Sofa_Gitclone.Sprint {
             this.activities = new List<Activity>();
         }
 
-        public void nextStep(RoleDecorator user) {
+        public void nextStep(UserDecorator user) {
             State.nextStep(this, user);
         }
 
-        public void previousStep(RoleDecorator user) {
+        public void previousStep(UserDecorator user) {
             State.previousStep(this, user);
         }
 
-        public void CreateDiscussion(string name, string description, RoleDecorator user) {
+        public void CreateDiscussion(string name, string description, UserDecorator user) {
 
             this.discussions.Add(new Discussion(name, description, user));
         }
@@ -49,7 +49,7 @@ namespace Sofa_Gitclone.Sprint {
             this.discussions[discussionNumber].AddComment(comment);
         }
 
-        public void AddActivity(string name, RoleDecorator user) {
+        public void AddActivity(string name, UserDecorator user) {
             this.activities.Add(new Activity(name, user));
         }
 

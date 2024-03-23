@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    public class ProductOwnerRoleDecorator : RoleDecorator {
+    public class ProductOwner : UserDecorator {
 
 
-        public ProductOwnerRoleDecorator(User user, Project project, INotification notificationPrefference) : base(user, project, notificationPrefference) {
+        public ProductOwner(User user, Project project, INotification notificationPrefference) : base(user, project, notificationPrefference) {
             this.CanDeploy = true;
             this.CanMarkAsDone = true;
         }

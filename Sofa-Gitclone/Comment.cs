@@ -9,10 +9,10 @@ namespace Sofa_Gitclone {
     public class Comment {
         public string Content;
         public DateTime Date;
-        public RoleDecorator User;
+        public UserDecorator User;
         public List<Comment> Comments;
 
-        public Comment(string content, RoleDecorator user) {
+        public Comment(string content, UserDecorator user) {
             this.Content = content;
             this.Date = DateTime.Now;
             this.User = user;

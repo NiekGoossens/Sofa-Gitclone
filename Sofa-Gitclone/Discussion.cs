@@ -10,11 +10,11 @@ namespace Sofa_Gitclone {
         public string title;
         public string description;
         public DateTime date;
-        public RoleDecorator user;
+        public UserDecorator user;
         public List<Comment> comments;
         public bool isClosed;
 
-        public Discussion(string title, string description, RoleDecorator user) {
+        public Discussion(string title, string description, UserDecorator user) {
             this.title = title;
             this.description = description;
             this.date = DateTime.Now;

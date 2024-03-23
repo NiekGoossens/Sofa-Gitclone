@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.User {
-    public class DeveloperRoleDecorator : RoleDecorator {
-        public DeveloperRoleDecorator(User user, Project project, INotification notificationPrefference) : base(user, project, notificationPrefference) {
+    public class Developer : UserDecorator {
+        public Developer(User user, Project project, INotification notificationPrefference) : base(user, project, notificationPrefference) {
 
         }
     }

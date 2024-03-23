@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Done : IBacklogItemState {
-        public void nextStep(BacklogItem item, RoleDecorator user) {
+        public void nextStep(BacklogItem item, UserDecorator user) {
             Console.WriteLine("Item is already done");
         }
 
-        public void previousStep(BacklogItem item, RoleDecorator user) {
+        public void previousStep(BacklogItem item, UserDecorator user) {
             item.State = new Tested();
         }
 
-        public static void CreateDiscussion(string name, string description, RoleDecorator user) {
+        public static void CreateDiscussion(string name, string description, UserDecorator user) {
 
             Console.WriteLine("Cannot create discussins for finished items");
         }
