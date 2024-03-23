@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 namespace Sofa_Gitclone.Sprint {
 
     public abstract class Sprint {
-        public List<BacklogItem> backlogItems = new List<BacklogItem>();
+        public List<BacklogItem> backlogItems;
         public string name;
         public DateTime startDate;
         public DateTime endDate;
         public List<RoleDecorator> users;
         public Project project;
+        public bool IsFinished;
 
 
         public Sprint(string name, DateTime startDate, DateTime endDate, Project project) {
@@ -23,19 +24,37 @@ namespace Sofa_Gitclone.Sprint {
             this.endDate = endDate;
             this.users = new List<RoleDecorator>();
             this.project = project;
+            this.IsFinished = false;
+            this.backlogItems = new List<BacklogItem>();
+        }
+
+        public bool CanPerform() {
+            if (DateTime.Now > endDate) {
+                Console.WriteLine("Sprint is finished, you can't perform this action");
+                return false;
+            }
+            return true;
         }
 
         public void AddBacklogItem(BacklogItem backlogItem) {
-            this.backlogItems.Add(backlogItem);
+            if (CanPerform())
+            {
+                this.backlogItems.Add(backlogItem);
+            }
         }
 
         public void AddUser(RoleDecorator user) {
-            users.Add(user);
+            if (CanPerform())
+            {
+                users.Add(user);
+            }
 
         }
 
         public void RemoveUser(RoleDecorator user) {
-            this.users.Remove(user);
+            if (CanPerform()) {
+                this.users.Remove(user);
+            }
         }
 
         public void NotifyUsers(string message) {
@@ -52,7 +71,16 @@ namespace Sofa_Gitclone.Sprint {
             return users.Where(u => u.CanTest).ToList();
         }
 
-        //pipeline in sprint
+        public void Finish() {
+            IsFinished = true;
+        }
+
+        // an external service will periodically call this method to check if the sprint is finished
+        public void CheckSprint() {
+            if (DateTime.Now > endDate) {
+                Finish();
+            }
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sofa_Gitclone.observer.NotificationTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Sofa_Gitclone.User {
     public class ProductOwnerRoleDecorator : RoleDecorator {
 
 
-        public ProductOwnerRoleDecorator(User user, Project project) : base(user, project) {
+        public ProductOwnerRoleDecorator(User user, Project project, INotification notificationPrefference) : base(user, project, notificationPrefference) {
             this.CanDeploy = true;
             this.CanMarkAsDone = true;
         }

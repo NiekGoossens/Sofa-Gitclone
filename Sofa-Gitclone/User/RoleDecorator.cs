@@ -1,4 +1,5 @@
 ﻿using Sofa_Gitclone.observer;
+using Sofa_Gitclone.observer.NotificationTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,23 @@ namespace Sofa_Gitclone.User {
         public bool CanTest;
         public bool CanDeploy;
         public bool CanMarkAsDone;
+        public INotification NotificationPrefference;
 
         // notification group met case
 
         protected Project project;
 
-        public RoleDecorator(User user, Project project) {
+        public RoleDecorator(User user, Project project, INotification notificationPrefference) {
             this.user = user;
             this.project = project;
             CanTest = false;
             CanDeploy = false;
             CanMarkAsDone = false;
+            NotificationPrefference = notificationPrefference;
         }
 
         public virtual void Update(string message) {
-            Console.WriteLine("Notification: " + message);
+            NotificationPrefference.SendNotification(message);
         }
     }
 }

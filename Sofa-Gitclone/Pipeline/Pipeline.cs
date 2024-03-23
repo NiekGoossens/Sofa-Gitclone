@@ -7,7 +7,7 @@ using Sofa_Gitclone.Adapter;
 
 namespace Sofa_Gitclone.Pipeline
 {
-    internal class Pipeline {
+    public class Pipeline {
         private IAzureDevOps _devOps;
         
         public Pipeline() {

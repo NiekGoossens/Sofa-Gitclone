@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Sofa_Gitclone;
 using Sofa_Gitclone.observer;
+using Sofa_Gitclone.observer.NotificationTypes;
 using Sofa_Gitclone.Sprint;
 using Sofa_Gitclone.Sprint.BacklogStates;
 using Sofa_Gitclone.Sprint.Export;
@@ -26,11 +27,11 @@ var project2 = new Project("Project2");
 
 // observer
 Publisher publisher = new Publisher();
-RoleDecorator productOwner = new ProductOwnerRoleDecorator(user1, project);
-RoleDecorator developer = new DeveloperRoleDecorator(user2, project);
-RoleDecorator tester = new TesterRoleDecorator(user1, project);
+RoleDecorator productOwner = new ProductOwnerRoleDecorator(user1, project, new SlackNotification());
+RoleDecorator developer = new DeveloperRoleDecorator(user2, project, new EmailNotification());
+RoleDecorator tester = new TesterRoleDecorator(user1, project, new EmailNotification());
 
-TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2);
+TesterRoleDecorator tester2 = new TesterRoleDecorator(user2, project2, new SlackNotification());
 
 publisher.Subscribe(productOwner);
 publisher.Subscribe(developer);
@@ -38,7 +39,7 @@ publisher.Notify("test all");
 
 
 DateTime date = new DateTime(2021, 12, 12);
-DateTime date2 = new DateTime(2021, 12, 12);
+DateTime date2 = new DateTime(2026, 12, 12);
 
 
 
@@ -49,9 +50,13 @@ BacklogItem backlogItem = new BacklogItem("test", "test backlog item", 32, teste
 sprint.AddBacklogItem(backlogItem);
 
 Console.WriteLine(sprint.backlogItems[0].Owner);
-// 
 
-sprint.backlogItems[0].nextStep(tester2);
+sprint.AddUser(tester);
+sprint.AddUser(productOwner);
+sprint.AddUser(developer);
+
+
+//sprint.backlogItems[0].nextStep(tester2);
 tester2.Update("test 1");
 publisher.Subscribe(tester2);
 publisher.Notify("test all 2");
