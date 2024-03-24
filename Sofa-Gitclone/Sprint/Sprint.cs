@@ -17,7 +17,7 @@ namespace Sofa_Gitclone.Sprint {
         public Project project;
         public bool IsFinished;
         private bool HasStarted;
-        // private pipeline
+        private Pipeline.Pipeline pipeline;
 
 
         public Sprint(string name, DateTime startDate, DateTime endDate, Project project) {
@@ -92,12 +92,13 @@ namespace Sofa_Gitclone.Sprint {
         }
 
         public void Finish(bool Succesful) {
-            IsFinished = true;
+            pipeline.Run();
             if (!Succesful)
             {
-                project.ProductOwner.Update("Sprint finished unsuccesfully");
+                project.ProductOwner.Update("Sprint failed deployment");
             } else {
-                // execute pipeline
+                IsFinished = true;
+                project.ProductOwner.Update("Sprint finished succesfully");
             }
         }
 
