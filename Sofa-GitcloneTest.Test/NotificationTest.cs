@@ -141,4 +141,36 @@ public class NotificationTest {
         // Reset the console output
         Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
     }
+
+    [Fact]
+    public void TestersShouldBeNotifiedWhenItemIsMovedToReadyForTesting() {
+        // Arrange
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        Project project = new Project("Project");
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("User");
+        UserDecorator productOwner = new ProductOwner(user, project, new EmailNotification());
+        UserDecorator tester = new Tester(user, project, new EmailNotification());
+        FeedbackSprintFactory feedbackFactory = new FeedbackSprintFactory();
+        var sprint = feedbackFactory.CreateSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), project);
+        BacklogItem backlogItem = new("test", "test backlog item", 32, productOwner, sprint);
+        project.AddProductOwner(productOwner);
+        publisher.Subscribe(tester);
+        sprint.AddUser(tester);
+        
+        backlogItem.nextStep(tester);
+        backlogItem.nextStep(tester);
+        backlogItem.nextStep(tester);
+        
+        // Act
+        backlogItem.nextStep(tester);
+        
+        // Assert
+        var expected = "Email notification: " + backlogItem.Title + " is ready for testing\r\n";
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
+    }
 }

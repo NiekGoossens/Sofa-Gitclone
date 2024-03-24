@@ -174,4 +174,27 @@ public class SprintTest {
         // Reset the console output
         Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
     }
+
+    [Fact]
+    public void CanRemoveUserFromSprint() {
+        // Arrange
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        Project project = new Project("Project 1");
+        Publisher publisher = new Publisher();
+        DeploymentSprintFactory factory = new DeploymentSprintFactory();
+        User.User user = new User.User("UserTest");
+        UserDecorator productOwner = new ProductOwner(user, project, new EmailNotification());
+        var sprint = factory.CreateSprint("Deployment Sprint", DateTime.Now.AddDays(-2), DateTime.Now.AddDays(-1), project);
+        project.AddProductOwner(productOwner);
+        publisher.Subscribe(productOwner);
+        sprint.AddUser(productOwner);
+        sprint.StartSprint();
+        
+        // Act
+        sprint.RemoveUser(productOwner);
+        
+        // Assert
+        Assert.Empty(sprint.users);
+    }
 }

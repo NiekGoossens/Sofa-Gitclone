@@ -1,5 +1,6 @@
 ﻿namespace Sofa_Gitclone.Test;
 
+[Collection("Sequential")]
 public class PipelineTest {
     [Fact]
     public void PipelineCanBeRun() {
