@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.Export {
     public interface SprintExport {
-        void CreateExport(Sprint sprint);
+        void CreateExport(Sprint sprint, string Header, string Footer);
     }
 }

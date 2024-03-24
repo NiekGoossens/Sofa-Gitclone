@@ -67,7 +67,7 @@ sprint.AddUser(developer);
 sprint.NotifyUsers("testing all sprint members");
 
 SprintExport sprintExport = new PdfExport();
-sprintExport.CreateExport(sprint);
+sprintExport.CreateExport(sprint, "Header test", "Footer test");
 
 BacklogItem backlogItem2 = new BacklogItem("test", "test backlog item", 32, tester, sprint);
 sprint.AddBacklogItem(backlogItem2);
