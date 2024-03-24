@@ -168,7 +168,7 @@ public class SprintTest {
         sprint.CheckSprint();
 
         // Assert
-        var expected = "Sprint is finished, you can't perform this action\nRunning pipeline\nSources\nPackage\nBuild\nTest\nAnalyzenDeploy\nUtility\nSprint failed deployment\n";
+        var expected = "Sprint is finished, you can't perform this action\nRunning pipeline\nSources\nPackage\nBuild\nTest\nAnalyze\nDeploy\nUtility\nSprint failed deployment\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
