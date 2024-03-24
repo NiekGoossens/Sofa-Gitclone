@@ -13,7 +13,7 @@ public class PipelineTest {
         pipeline.Run();
         
         // Assert
-        var expected = "Running pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\n";
+        var expected = "Running pipeline\nSources\nPackage\nBuild\nTest\nAnalyze\nDeploy\nUtility\n";
         Assert.Equal(expected, sw.ToString());
     }
 }

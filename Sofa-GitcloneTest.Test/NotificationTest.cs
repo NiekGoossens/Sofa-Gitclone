@@ -17,7 +17,7 @@ public class NotificationTest {
     [Fact]
     public void UserShouldGetCorrectMessageOnEmailNotificationWhenNotified() {
         // Arrange
-        var expected = "Email notification: testmessage\r\n";
+        var expected = "Email notification: testmessage\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
         
@@ -40,7 +40,7 @@ public class NotificationTest {
     [Fact]
     public void UserShouldGetCorrectMessageOnSlackNotificationWhenNotified() {
         // Arrange
-        var expected = "Slack notification: testmessage\r\n";
+        var expected = "Slack notification: testmessage\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
         
@@ -111,7 +111,7 @@ public class NotificationTest {
     [Fact]
     public void AllUsersInSprintShouldBeNotified() {
         // Arrange
-        var expected = "Email notification: testing all sprint members\r\n";
+        var expected = "Email notification: testing all sprint members\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
         
@@ -136,7 +136,7 @@ public class NotificationTest {
         sprint.NotifyUsers("testing all sprint members");
         
         // Assert
-        Assert.Equal(expected+expected+"testing all sprint members\r\n", sw.ToString());
+        Assert.Equal(expected+expected+"testing all sprint members\n", sw.ToString());
         
         // Reset the console output
         Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
@@ -167,7 +167,7 @@ public class NotificationTest {
         backlogItem.nextStep(tester);
         
         // Assert
-        var expected = "Email notification: " + backlogItem.Title + " is ready for testing\r\n";
+        var expected = "Email notification: " + backlogItem.Title + " is ready for testing\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output

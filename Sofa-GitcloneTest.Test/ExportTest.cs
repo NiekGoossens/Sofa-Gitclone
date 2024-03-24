@@ -24,7 +24,7 @@ public class ExportTest {
         sprintExport.CreateExport(sprint, "Feedback Sprint", "Footer");
 
         // Assert
-        var expected = "Exporting to PDF\r\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\r\n";
+        var expected = "Exporting to PDF\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -46,7 +46,7 @@ public class ExportTest {
         sprintExport.CreateExport(sprint, "Feedback Sprint", "Footer");
 
         // Assert
-        var expected = "Exporting to Png\r\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\r\n";
+        var expected = "Exporting to Png\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output

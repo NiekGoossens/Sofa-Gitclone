@@ -61,7 +61,7 @@ public class ProjectTest {
         project.Commit(backlogItem);
         
         // Assert
-        var expected = "Committing changes using GitSharp to the backlog item: " + backlogItem.Title + "\r\n";
+        var expected = "Committing changes using GitSharp to the backlog item: " + backlogItem.Title + "\n";
         Assert.Equal(expected, sw.ToString());
     }
 }

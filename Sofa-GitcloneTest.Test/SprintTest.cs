@@ -114,7 +114,7 @@ public class SprintTest {
         sprint.Finish(false);
 
         // Assert
-        var expected = "Running pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint failed deployment\r\n";
+        var expected = "Running pipeline\nSources\nPackage\nBuild\nTest\nAnalyze\nDeploy\nUtility\nSprint failed deployment\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -141,7 +141,7 @@ public class SprintTest {
         sprint.Finish(true);
 
         // Assert
-        var expected = "Running pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint finished succesfully\r\n";
+        var expected = "Running pipeline\nSources\nPackage\nBuild\nTest\nAnalyze\nDeploy\nUtility\nSprint finished succesfully\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -168,7 +168,7 @@ public class SprintTest {
         sprint.CheckSprint();
 
         // Assert
-        var expected = "Sprint is finished, you can't perform this action\r\nRunning pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint failed deployment\r\n";
+        var expected = "Sprint is finished, you can't perform this action\nRunning pipeline\nSources\nPackage\nBuild\nTest\nAnalyzenDeploy\nUtility\nSprint failed deployment\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -269,7 +269,7 @@ public class SprintTest {
         sprint.CancelRelease();
 
         // Assert
-        var expected = "Canceled release for sprint: Deployment Sprint\r\n";
+        var expected = "Canceled release for sprint: Deployment Sprint\n";
         Assert.Equal(expected, sw.ToString());
     }
 }

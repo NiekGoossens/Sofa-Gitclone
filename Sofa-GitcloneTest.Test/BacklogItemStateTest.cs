@@ -24,7 +24,7 @@ public class BacklogItemStateTest {
         backlogItem.previousStep(productOwner);
         
         // Assert
-        var expected = "Item is already in the first state\r\n";
+        var expected = "Item is already in the first state\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -175,7 +175,7 @@ public class BacklogItemStateTest {
         backlogItem.nextStep(developer);
         
         // Assert
-        var expected = "User does not have the right role to test\r\n";
+        var expected = "User does not have the right role to test\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -271,7 +271,7 @@ public class BacklogItemStateTest {
         backlogItem.nextStep(tester);
         
         // Assert
-        var expected = "Item is already done\r\n";
+        var expected = "Item is already done\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
