@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.BacklogStates {
     public class Doing : IBacklogItemState {
+        private BacklogItem _backlogItem;
+        
+        public Doing(BacklogItem backlogItem) {
+            _backlogItem = backlogItem;
+        }
 
         public void nextStep(BacklogItem item, UserDecorator user) {
 
@@ -25,7 +30,7 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
                 Console.WriteLine("Could not go to next step since there are unfinished activities");
                 return;
             } else {
-                item.State = new ReadyForTesting();
+                item.State = new ReadyForTesting(item);
             }
 
             // Send notification to testers
@@ -37,9 +42,15 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
         }
 
         public void previousStep(BacklogItem item, UserDecorator user) {
-            item.State = new ToDo();
+            item.State = new ToDo(item);
         }
 
+        public void CreateDiscussion(string name, string description, UserDecorator user) {
+            _backlogItem.discussions.Add(new Discussion(name, description, user));
+        }
 
+        public void CreateComment(int discussionNumber, Comment comment, UserDecorator user) {
+            _backlogItem.discussions[discussionNumber].AddComment(comment);
+        }
     }
 }

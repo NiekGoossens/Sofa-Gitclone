@@ -12,7 +12,8 @@ namespace Sofa_Gitclone.Sprint.BacklogStates {
         // stuur ook gebruiker mee om te controleren of de gebruiker de juiste rol heeft om de actie uit te voeren
         void nextStep(BacklogItem item, UserDecorator user);
         void previousStep(BacklogItem item, UserDecorator user);
-  
+        void CreateDiscussion(string name, string description, UserDecorator user);
+        void CreateComment(int discussionNumber, Comment comment, UserDecorator user);
     }
 
 

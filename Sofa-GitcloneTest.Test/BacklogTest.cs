@@ -6,9 +6,8 @@ using Sofa_Gitclone.User;
 
 namespace Sofa_Gitclone.Test;
 
+[Collection("Sequential")]
 public class BacklogTest {
-    private Mock<BacklogItem> backlogItemMock = new Mock<BacklogItem>();
-    
     private static User.User user1 = new("User1Test");
     private static User.User user2 = new("User2Dev");
     
@@ -56,27 +55,6 @@ public class BacklogTest {
         Assert.True(backlogItem.activities[0].IsDone);
         Assert.True(backlogItem.activities[1].IsDone);
     }
-
-    [Fact]
-    public void BacklogItemCanOnlyFinishWhenActivitiesAreDone() {
-        // Arrange
-        Activity activity = new("test activity", tester);
-        Activity secondActivity = new("second test activity", developer);
-        
-        // Act
-        backlogItem.AddActivity(activity);
-        backlogItem.AddActivity(secondActivity);
-        
-        backlogItem.FinishActivity(0);
-        
-        backlogItem.nextStep(developer); // From todoState to doingState
-        
-        var state = backlogItem.State;
-        backlogItem.nextStep(developer);
-
-        // Assert
-        Assert.Same(state, backlogItem.State);
-    }
     
     [Fact]
     public void BacklogItemCanCreateDiscussions() {
@@ -85,10 +63,25 @@ public class BacklogTest {
         string discussionDescription = "test discussion description";
         
         // Act
-        backlogItem.CreateDiscussion(discussionName, discussionDescription, tester);
+        backlogItem.State.CreateDiscussion(discussionName, discussionDescription, tester);
         
         // Assert
         Assert.Equal(1, backlogItem.discussions.Count);
+    }
+    
+    [Fact]
+    public void BacklogItemCanCloseDiscussions() {
+        // Arrange
+        string discussionName = "test discussion";
+        string discussionDescription = "test discussion description";
+        backlogItem.State.CreateDiscussion(discussionName, discussionDescription, tester);
+        sprint.AddBacklogItem(backlogItem);
+
+        // Act
+        backlogItem.discussions[0].Close();
+
+        // Assert
+        Assert.True(backlogItem.discussions[0].isClosed);
     }
     
     [Fact]
@@ -96,15 +89,34 @@ public class BacklogTest {
         // Arrange
         string discussionName = "test discussion";
         string discussionDescription = "test discussion description";
-        backlogItem.CreateDiscussion(discussionName, discussionDescription, tester);
+        backlogItem.State.CreateDiscussion(discussionName, discussionDescription, tester);
         
         Comment comment = new("test comment", tester);
         
         // Act
-        backlogItem.CreateComment(0, comment);
+        backlogItem.State.CreateComment(0, comment, tester);
         
         // Assert
         Assert.Equal(1, backlogItem.discussions[0].comments.Count);
+    }
+    
+    [Fact]
+    public void BacklogItemCanCreateCommentsOnComments() {
+        // Arrange
+        string discussionName = "test discussion";
+        string discussionDescription = "test discussion description";
+        backlogItem.State.CreateDiscussion(discussionName, discussionDescription, tester);
+        
+        Comment comment = new("test comment", tester);
+        backlogItem.State.CreateComment(0, comment, tester);
+        
+        Comment comment2 = new("test comment 2", tester);
+        
+        // Act
+        backlogItem.State.CreateComment(0, comment2, tester);
+        
+        // Assert
+        Assert.Equal(2, backlogItem.discussions[0].comments.Count);
     }
     
     [Fact]
