@@ -16,6 +16,8 @@ namespace Sofa_Gitclone.Sprint {
         public List<UserDecorator> users;
         public Project project;
         public bool IsFinished;
+        private bool HasStarted;
+        // private pipeline
 
 
         public Sprint(string name, DateTime startDate, DateTime endDate, Project project) {
@@ -71,14 +73,38 @@ namespace Sofa_Gitclone.Sprint {
             return users.Where(u => u.CanTest).ToList();
         }
 
-        public void Finish() {
+        public void UpdateSprint(string name, DateTime? startDate, DateTime? endDate) {
+            if (!HasStarted) {
+                if (name != null) {
+                    this.name = name;
+                }
+                if (startDate != null) {
+                    this.startDate = startDate.Value;
+                }
+                if (endDate != null) {
+                    this.endDate = endDate.Value;
+                }
+            }
+        }
+
+        public void StartSprint() {
+            this.HasStarted = true;
+        }
+
+        public void Finish(bool Succesful) {
             IsFinished = true;
+            if (!Succesful)
+            {
+                project.ProductOwner.Update("Sprint finished unsuccesfully");
+            } else {
+                // execute pipeline
+            }
         }
 
         // an external service will periodically call this method to check if the sprint is finished
         public void CheckSprint() {
             if (DateTime.Now > endDate) {
-                Finish();
+                Finish(false);
             }
         }
 
