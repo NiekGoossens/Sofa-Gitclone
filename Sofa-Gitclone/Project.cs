@@ -24,7 +24,6 @@ namespace Sofa_Gitclone {
 
         public void AddProductOwner(ISubscriber productOwner) {
             this.ProductOwner = productOwner;
-
         }
 
         public void AddUser(ISubscriber user) {

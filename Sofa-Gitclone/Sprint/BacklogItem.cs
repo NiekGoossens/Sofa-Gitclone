@@ -25,7 +25,7 @@ namespace Sofa_Gitclone.Sprint {
             Description = description;
             this.storypoints = storypoints;
             Owner = owner;
-            State = new ToDo();
+            State = new ToDo(this);
             this.discussions = new List<Discussion>();
             publisher.Subscribe(this.Owner);
             this.sprint = sprint;
@@ -38,15 +38,6 @@ namespace Sofa_Gitclone.Sprint {
 
         public void previousStep(UserDecorator user) {
             State.previousStep(this, user);
-        }
-
-        public void CreateDiscussion(string name, string description, UserDecorator user) {
-
-            this.discussions.Add(new Discussion(name, description, user));
-        }
-
-        public void CreateComment(int discussionNumber, Comment comment) {
-            this.discussions[discussionNumber].AddComment(comment);
         }
 
         public void AddActivity(Activity activity) {

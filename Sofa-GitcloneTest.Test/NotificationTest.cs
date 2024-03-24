@@ -1,58 +1,144 @@
-﻿using Sofa_Gitclone.observer;
+﻿using System.Text;
+using Sofa_Gitclone.observer;
+using Sofa_Gitclone.observer.NotificationTypes;
+using Sofa_Gitclone.Sprint;
+using Sofa_Gitclone.Sprint.SprintFactories;
+using Sofa_Gitclone.User;
 
 namespace Sofa_Gitclone.Test;
 
 public class NotificationTest {
-    private Mock<ISubscriber> _subscriberMock;
+    // private Mock<ISubscriber> _subscriberMock;
+    //
+    // public NotificationTest() {
+    //     _subscriberMock = new Mock<ISubscriber>();
+    // }
     
-    public NotificationTest() {
-        _subscriberMock = new Mock<ISubscriber>();
+    [Fact]
+    public void UserShouldGetCorrectMessageOnEmailNotificationWhenNotified() {
+        // Arrange
+        var expected = "Email notification: testmessage\r\n";
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("UserTest");
+        Project project = new Project("ProjectTest");
+        UserDecorator developer = new Developer(user, project, new EmailNotification());
+        
+        // Act
+        publisher.Subscribe(developer);
+        publisher.Notify("testmessage");
+        
+        // Assert
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
     }
     
-    // [Fact]
-    // public void NotifiesSubscriberWhenPublisherPublishes() {
-    //     // Arrange
-    //     var publisher = new Publisher();
-    //     var subscriberMock = new Mock<ISubscriber>();
-    //     publisher.Subscribe(subscriberMock.Object);
-    //
-    //     // Act
-    //     publisher.Publish();
-    //
-    //     // Assert
-    //     subscriberMock.Verify(s => s.Notify(), Times.Once);
-    // }
-    //
-    // [Fact]
-    // public void DoesNotNotifySubscriberAfterUnsubscribe() {
-    //     // Arrange
-    //     var publisher = new Publisher();
-    //     var subscriberMock = new Mock<ISubscriber>();
-    //     publisher.Subscribe(subscriberMock.Object);
-    //     publisher.Unsubscribe(subscriberMock.Object);
-    //
-    //     // Act
-    //     publisher.Publish();
-    //
-    //     // Assert
-    //     subscriberMock.Verify(s => s.Notify(), Times.Never);
-    // }
-    //
-    // [Fact]
-    // public void DoesNotNotifyUnsubscribedSubscriber() {
-    //     // Arrange
-    //     var publisher = new Publisher();
-    //     var subscriberMock1 = new Mock<ISubscriber>();
-    //     var subscriberMock2 = new Mock<ISubscriber>();
-    //     publisher.Subscribe(subscriberMock1.Object);
-    //     publisher.Subscribe(subscriberMock2.Object);
-    //     publisher.Unsubscribe(subscriberMock1.Object);
-    //
-    //     // Act
-    //     publisher.Publish();
-    //
-    //     // Assert
-    //     subscriberMock1.Verify(s => s.Notify(), Times.Never);
-    //     subscriberMock2.Verify(s => s.Notify(), Times.Once);
-    // }
+    [Fact]
+    public void UserShouldGetCorrectMessageOnSlackNotificationWhenNotified() {
+        // Arrange
+        var expected = "Slack notification: testmessage\r\n";
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("UserTest");
+        Project project = new Project("ProjectTest");
+        UserDecorator developer = new Developer(user, project, new SlackNotification());
+        
+        // Act
+        publisher.Subscribe(developer);
+        publisher.Notify("testmessage");
+        
+        // Assert
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
+    }
+    
+    [Fact]
+    public void UserShouldGetCorrectMessageOnSlackNotificationWhenUnsubscribed() {
+        // Arrange
+        var expected = "";
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("UserTest");
+        Project project = new Project("ProjectTest");
+        UserDecorator developer = new Developer(user, project, new SlackNotification());
+        
+        // Act
+        publisher.Subscribe(developer);
+        publisher.UnSubscribe(developer);
+        publisher.Notify("testmessage");
+        
+        // Assert
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
+    }
+    
+    [Fact]
+    public void UserShouldGetCorrectMessageOnEmailNotificationWhenUnsubscribed() {
+        // Arrange
+        var expected = "";
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("UserTest");
+        Project project = new Project("ProjectTest");
+        UserDecorator developer = new Developer(user, project, new EmailNotification());
+        
+        // Act
+        publisher.Subscribe(developer);
+        publisher.UnSubscribe(developer);
+        publisher.Notify("testmessage");
+        
+        // Assert
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
+    }
+
+    [Fact]
+    public void AllUsersInSprintShouldBeNotified() {
+        // Arrange
+        var expected = "";
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        
+        Publisher publisher = new Publisher();
+        User.User user = new User.User("UserTest");
+        Project project = new Project("ProjectTest");
+        UserDecorator developer = new Developer(user, project, new EmailNotification());
+        UserDecorator tester = new Tester(user, project, new EmailNotification());
+        UserDecorator productOwner = new ProductOwner(user, project, new EmailNotification());
+        FeedbackSprintFactory feedbackSprintFactory = new FeedbackSprintFactory();
+        var sprint = feedbackSprintFactory.CreateSprint("TestSpring", DateTime.Now, DateTime.Now.AddDays(1), project);
+        
+        // Act
+        publisher.Subscribe(developer);
+        publisher.Subscribe(tester);
+        publisher.Subscribe(productOwner);
+        
+        sprint.AddUser(developer);
+        sprint.AddUser(tester);
+        sprint.AddUser(productOwner);
+        
+        sprint.NotifyUsers("testing all sprint members");
+        
+        // Assert
+        Assert.Equal(expected, sw.ToString());
+        
+        // Reset the console output
+        Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
+    }
 }

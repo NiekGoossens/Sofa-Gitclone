@@ -73,16 +73,16 @@ BacklogItem backlogItem2 = new BacklogItem("test", "test backlog item", 32, test
 sprint.AddBacklogItem(backlogItem2);
 
 // create discussion
-sprint.backlogItems[1].CreateDiscussion("discussion", "description", productOwner);
+sprint.backlogItems[1].State.CreateDiscussion("discussion", "description", productOwner);
 
 Console.WriteLine(sprint.backlogItems[1].discussions[0]);
 
 //create comments
 Comment comment = new Comment("comment", tester2);
-sprint.backlogItems[1].CreateComment(0, comment);
+sprint.backlogItems[1].State.CreateComment(0, comment, tester2);
 // create comment on comment
 Comment comment2 = new Comment("comment2", tester2);
-sprint.backlogItems[1].CreateComment(0, comment2);
+sprint.backlogItems[1].State.CreateComment(0, comment2, tester2);
 
 // close discussion
 sprint.backlogItems[1].discussions[0].Close();
