@@ -12,7 +12,6 @@ public class ExportTest {
     [Fact]
     public void ExportToPDF() {
         // Arrange
-        var expected = "Exporting to PDF\r\nExporting Sprint: Feedback Sprint\r\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
 
@@ -22,9 +21,10 @@ public class ExportTest {
         var sprint = feedbackFactory.CreateSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), project);
 
         // Act
-        sprintExport.CreateExport(sprint);
+        sprintExport.CreateExport(sprint, "Feedback Sprint", "Footer");
 
         // Assert
+        var expected = "Exporting to PDF\r\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\r\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -34,7 +34,6 @@ public class ExportTest {
     [Fact]
     public void ExportToPNG() {
         // Arrange
-        var expected = "Exporting to Png\r\nExporting Sprint: Feedback Sprint\r\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
 
@@ -44,9 +43,10 @@ public class ExportTest {
         var sprint = feedbackFactory.CreateSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), project);
 
         // Act
-        sprintExport.CreateExport(sprint);
+        sprintExport.CreateExport(sprint, "Feedback Sprint", "Footer");
 
         // Assert
+        var expected = "Exporting to Png\r\nSprint export: " + "Feedback Sprint" + "\n" + sprint.project.Name + " " + sprint.name + " " + sprint.startDate + "\n" + "Footer\r\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output

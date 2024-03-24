@@ -19,6 +19,7 @@ namespace Sofa_Gitclone.Pipeline
             _devOps.Build();
             _devOps.Test();
             _devOps.Deploy();
+            return true;
         }
     }
 }
