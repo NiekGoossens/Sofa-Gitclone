@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sofa_Gitclone.Sprint.SprintFactories {
     public class FeedbackSprint : Sprint {
-        protected bool IsReviewing;
-        protected string? Review;
-        protected bool FinishedSprint;
+        public bool IsReviewing;
+        public string? Review;
+        public bool FinishedSprint;
 
         public FeedbackSprint(string name, DateTime startDate, DateTime endDate, Project project) : base(name, startDate, endDate, project) {
             this.FinishedSprint = false;

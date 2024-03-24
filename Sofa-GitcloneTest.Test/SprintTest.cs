@@ -198,23 +198,78 @@ public class SprintTest {
         Assert.Empty(sprint.users);
     }
 
-    // [Fact]
-    // public void FeedBackSprintCanBeReviewed() {
-    //     // Arrange
-    //     // Project project = new Project("Project 1");
-    //     // Publisher publisher = new Publisher();
-    //     // FeedbackSprintFactory factory = new FeedbackSprintFactory();
-    //     // User.User user = new User.User("UserTest");
-    //     // UserDecorator productOwner = new ProductOwner(user, project, new EmailNotification());
-    //     // var sprint = factory.CreateSprint("Deployment Sprint", DateTime.Now.AddDays(-2), DateTime.Now.AddDays(-1), project);
-    //     // FeedbackSprint feedbackSprint = (FeedbackSprint) sprint;
-    //     // project.AddProductOwner(productOwner);
-    //     Sprint.Sprint sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
-    //     
-    //     // Act
-    //     sprint.
-    //     
-    //     // Assert
-    //     Assert.True();
-    // }
+    [Fact]
+    public void FeedbackSprint_StartReview_SetsIsReviewingToTrue() {
+        // Arrange
+        var sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
+
+        // Act
+        sprint.StartReview();
+
+        // Assert
+        Assert.True(sprint.IsReviewing);
+    }
+
+    [Fact]
+    public void FeedbackSprint_UploadReview_SetsReview() {
+        // Arrange
+        var sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
+        var review = "This is a review";
+
+        // Act
+        sprint.UploadReview(review);
+
+        // Assert
+        Assert.Equal(review, sprint.Review);
+    }
+
+    [Fact]
+    public void FeedbackSprint_EndReview_SetsIsReviewingToFalseAndIsFinishedToTrue_WhenReviewIsNotNull() {
+        // Arrange
+        var sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
+        sprint.UploadReview("This is a review");
+
+        // Act
+        sprint.EndReview();
+
+        // Assert
+        Assert.False(sprint.IsReviewing);
+        Assert.True(sprint.IsFinished);
+    }
+
+    [Fact]
+    public void FeedbackSprint_EndReview_KeepsIsReviewingTrueAndIsFinishedFalse_WhenReviewIsNull() {
+        // Arrange
+        var sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
+        sprint.StartReview();
+
+        // Act
+        sprint.EndReview();
+
+        // Assert
+        Assert.True(sprint.IsReviewing);
+        Assert.False(sprint.IsFinished);
+    }
+    
+    [Fact]
+    public void DeploymentSprint_CancelRelease_UpdatesProductOwner() {
+        // Arrange
+        using StringWriter sw = new();
+        Console.SetOut(sw);
+        Publisher publisher = new Publisher();
+        var project = new Project("Project 1");
+        var user = new User.User("UserTest");
+        var productOwner = new ProductOwner(user, project, new EmailNotification());
+        var sprint = new DeploymentSprint("Deployment Sprint", DateTime.Now, DateTime.Now.AddDays(1), project);
+        project.AddProductOwner(productOwner);
+        sprint.AddUser(productOwner);
+        publisher.Subscribe(productOwner);
+
+        // Act
+        sprint.CancelRelease();
+
+        // Assert
+        var expected = "Canceled release for sprint: Deployment Sprint\r\n";
+        Assert.Equal(expected, sw.ToString());
+    }
 }
