@@ -197,4 +197,24 @@ public class SprintTest {
         // Assert
         Assert.Empty(sprint.users);
     }
+
+    // [Fact]
+    // public void FeedBackSprintCanBeReviewed() {
+    //     // Arrange
+    //     // Project project = new Project("Project 1");
+    //     // Publisher publisher = new Publisher();
+    //     // FeedbackSprintFactory factory = new FeedbackSprintFactory();
+    //     // User.User user = new User.User("UserTest");
+    //     // UserDecorator productOwner = new ProductOwner(user, project, new EmailNotification());
+    //     // var sprint = factory.CreateSprint("Deployment Sprint", DateTime.Now.AddDays(-2), DateTime.Now.AddDays(-1), project);
+    //     // FeedbackSprint feedbackSprint = (FeedbackSprint) sprint;
+    //     // project.AddProductOwner(productOwner);
+    //     Sprint.Sprint sprint = new FeedbackSprint("Feedback Sprint", DateTime.Now, DateTime.Now.AddDays(1), new Project("Project 1"));
+    //     
+    //     // Act
+    //     sprint.
+    //     
+    //     // Assert
+    //     Assert.True();
+    // }
 }

@@ -17,15 +17,6 @@ namespace Sofa_Gitclone.Sprint.SprintFactories
             this.SprintName = name;
         }
 
-        public void StartDeployment() {
-            this.IsDeploying = true;
-            // Execute pipeline
-        }
-
-        public void StopDeployment() {
-            // stop deployment
-        }
-
         public void CancelRelease() {
             project.ProductOwner.Update("Canceled release for sprint: " + this.name);
         }
