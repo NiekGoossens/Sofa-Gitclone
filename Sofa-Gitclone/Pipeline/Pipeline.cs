@@ -16,9 +16,13 @@ namespace Sofa_Gitclone.Pipeline
 
         public void Run() {
             Console.WriteLine("Running pipeline");
+            _devOps.Sources();
+            _devOps.Package();
             _devOps.Build();
             _devOps.Test();
+            _devOps.Analyze();
             _devOps.Deploy();
+            _devOps.Utility();
         }
     }
 }

@@ -114,7 +114,7 @@ public class SprintTest {
         sprint.Finish(false);
 
         // Assert
-        var expected = "Running pipeline\r\nBuild\r\nTest\r\nDeploy\r\nSprint failed deployment\r\n";
+        var expected = "Running pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint failed deployment\r\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -141,7 +141,7 @@ public class SprintTest {
         sprint.Finish(true);
 
         // Assert
-        var expected = "Running pipeline\r\nBuild\r\nTest\r\nDeploy\r\nSprint finished succesfully\r\n";
+        var expected = "Running pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint finished succesfully\r\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
@@ -168,7 +168,7 @@ public class SprintTest {
         sprint.CheckSprint();
 
         // Assert
-        var expected = "Sprint is finished, you can't perform this action\r\nRunning pipeline\r\nBuild\r\nTest\r\nDeploy\r\nSprint failed deployment\r\n";
+        var expected = "Sprint is finished, you can't perform this action\r\nRunning pipeline\r\nSources\r\nPackage\r\nBuild\r\nTest\r\nAnalyze\r\nDeploy\r\nUtility\r\nSprint failed deployment\r\n";
         Assert.Equal(expected, sw.ToString());
         
         // Reset the console output
