@@ -6,6 +6,7 @@ using Sofa_Gitclone.User;
 
 namespace Sofa_Gitclone.Test;
 
+[Collection("Sequential")]
 public class BacklogItemStateTest {
     [Fact]
     public void ToDoStateShouldChangeStateToDoing() {

@@ -6,7 +6,7 @@ using Sofa_Gitclone.Sprint.SprintFactories;
 using Sofa_Gitclone.User;
 
 namespace Sofa_Gitclone.Test;
-
+[Collection("Sequential")]
 public class NotificationTest {
     // private Mock<ISubscriber> _subscriberMock;
     //
@@ -111,7 +111,7 @@ public class NotificationTest {
     [Fact]
     public void AllUsersInSprintShouldBeNotified() {
         // Arrange
-        var expected = "";
+        var expected = "Email notification: testing all sprint members\r\n";
         using StringWriter sw = new();
         Console.SetOut(sw);
         
@@ -136,7 +136,7 @@ public class NotificationTest {
         sprint.NotifyUsers("testing all sprint members");
         
         // Assert
-        Assert.Equal(expected, sw.ToString());
+        Assert.Equal(expected+expected+"testing all sprint members\r\n", sw.ToString());
         
         // Reset the console output
         Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));

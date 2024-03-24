@@ -6,6 +6,8 @@ using Sofa_Gitclone.Sprint.SprintFactories;
 
 namespace Sofa_Gitclone.Test;
 
+[Collection("Sequential")]
+
 public class ExportTest {
     [Fact]
     public void ExportToPDF() {

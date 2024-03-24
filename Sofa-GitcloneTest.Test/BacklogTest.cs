@@ -6,9 +6,8 @@ using Sofa_Gitclone.User;
 
 namespace Sofa_Gitclone.Test;
 
+[Collection("Sequential")]
 public class BacklogTest {
-    private Mock<BacklogItem> backlogItemMock = new Mock<BacklogItem>();
-    
     private static User.User user1 = new("User1Test");
     private static User.User user2 = new("User2Dev");
     
@@ -76,12 +75,13 @@ public class BacklogTest {
         string discussionName = "test discussion";
         string discussionDescription = "test discussion description";
         backlogItem.State.CreateDiscussion(discussionName, discussionDescription, tester);
-        
+        sprint.AddBacklogItem(backlogItem);
+
         // Act
-        sprint.backlogItems[1].discussions[0].Close();
-        
+        backlogItem.discussions[0].Close();
+
         // Assert
-        Assert.True(sprint.backlogItems[1].discussions[0].isClosed);
+        Assert.True(backlogItem.discussions[0].isClosed);
     }
     
     [Fact]
