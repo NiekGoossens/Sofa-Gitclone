@@ -49,8 +49,8 @@ namespace Sofa_Gitclone.Sprint {
             this.discussions[discussionNumber].AddComment(comment);
         }
 
-        public void AddActivity(string name, UserDecorator user) {
-            this.activities.Add(new Activity(name, user));
+        public void AddActivity(Activity activity) {
+            this.activities.Add(activity);
         }
 
         public void FinishActivity(int activityNumber) {
