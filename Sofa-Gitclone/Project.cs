@@ -19,6 +19,7 @@ namespace Sofa_Gitclone {
 
         public Project(string name) {
             this.Name = name;
+            this.Users = new List<ISubscriber>();
             _gitAdapter = new GitAdapter();
         }
 

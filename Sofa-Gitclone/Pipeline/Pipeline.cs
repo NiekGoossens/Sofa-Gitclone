@@ -14,12 +14,11 @@ namespace Sofa_Gitclone.Pipeline
             _devOps = new DevOpsAdapter();
         }
 
-        public bool Run() {
+        public void Run() {
             Console.WriteLine("Running pipeline");
             _devOps.Build();
             _devOps.Test();
             _devOps.Deploy();
-            return true;
         }
     }
 }

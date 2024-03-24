@@ -28,6 +28,7 @@ namespace Sofa_Gitclone.Sprint {
             this.project = project;
             this.IsFinished = false;
             this.backlogItems = new List<BacklogItem>();
+            this.pipeline = new Pipeline.Pipeline();
         }
 
         public bool CanPerform() {
@@ -93,8 +94,7 @@ namespace Sofa_Gitclone.Sprint {
 
         public void Finish(bool Succesful) {
             pipeline.Run();
-            if (!Succesful)
-            {
+            if (!Succesful) {
                 project.ProductOwner.Update("Sprint failed deployment");
             } else {
                 IsFinished = true;
